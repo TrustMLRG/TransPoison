@@ -13,7 +13,7 @@ from PIL import Image
 def setup_default_logging(args, default_level=logging.INFO,
                           format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s"):
     
-    output_dir = os.path.join('./', args.dataset, f'x{args.n_labeled}_seed{args.seed}_{args.arch}', args.exp_dir)
+    output_dir = os.path.join('./FixMatch', args.dataset, f'x{args.n_labeled}_seed{args.seed}_{args.arch}', args.exp_dir)
 
     os.makedirs(output_dir, exist_ok=True)
 

@@ -38,7 +38,7 @@ class ThreeCropsTransform:
         x3 = self.trans_strong1(x)
         return [x1, x2, x3] 
 
-def load_tp_cifar10_train(root='../data'):
+def load_tp_cifar10_train(root='./data'):
     
     cifar_data = datasets.CIFAR10(root=root, train=True, download=True)
     
@@ -46,7 +46,7 @@ def load_tp_cifar10_train(root='../data'):
     
     for i in range(50000):
             
-        x = Image.open(f'../results/resnet18_cifar10_tp/data/{i}.png')
+        x = Image.open(f'./results/resnet18_cifar10_tp/data/{i}.png')
         
         data = deepcopy(x)
         data = np.array(data)
@@ -61,7 +61,7 @@ def load_tp_cifar10_train(root='../data'):
     print(len(data_x), len(data_u))
     return data_x, label_x, data_u, label_u     
 
-def load_tp_cifar100_train(root='../data'):
+def load_tp_cifar100_train(root='./data'):
     
     cifar_data = datasets.CIFAR100(root=root, train=True, download=True)
     
@@ -69,7 +69,7 @@ def load_tp_cifar100_train(root='../data'):
     
     for i in range(50000):
 
-        x = Image.open(f'../results/resnet18_cifar100_tp/data/{i}.png')
+        x = Image.open(f'./results/resnet18_cifar100_tp/data/{i}.png')
 
         data = deepcopy(x)
         data = np.array(data)
@@ -84,7 +84,7 @@ def load_tp_cifar100_train(root='../data'):
     print(len(data_x), len(data_u))
     return data_x, label_x, data_u, label_u   
 
-def load_data_train(L=250, dataset='CIFAR10', dspth='../data'):
+def load_data_train(L=250, dataset='CIFAR10', dspth='./data'):
     if dataset == 'CIFAR10':
         datalist = [
             osp.join(dspth, 'cifar-10-batches-py', 'data_batch_{}'.format(i + 1))
@@ -126,7 +126,7 @@ def load_data_train(L=250, dataset='CIFAR10', dspth='../data'):
     return data_x, label_x, data_u, label_u
 
 
-def load_data_val(dataset, dspth='../data'):
+def load_data_val(dataset, dspth='./data'):
     if dataset == 'CIFAR10' or dataset == 'tpcifar10':
         datalist = [
             osp.join(dspth, 'cifar-10-batches-py', 'test_batch')
@@ -223,7 +223,7 @@ class Cifar(Dataset):
         return leng
 
 
-def get_train_loader(dataset, batch_size, mu, n_iters_per_epoch, L, root='../data', method='fixmatch', clean_ratio=1.):
+def get_train_loader(dataset, batch_size, mu, n_iters_per_epoch, L, root='./data', method='fixmatch', clean_ratio=1.):
     if dataset == 'tpcifar10':
         data_x, label_x, data_u, label_u = load_tp_cifar10_train(root=root)
     elif dataset == 'tpcifar100':
@@ -262,7 +262,7 @@ def get_train_loader(dataset, batch_size, mu, n_iters_per_epoch, L, root='../dat
     return dl_x, dl_u
 
 
-def get_val_loader(dataset, batch_size, num_workers, pin_memory=True, root='../data'):
+def get_val_loader(dataset, batch_size, num_workers, pin_memory=True, root='./data'):
     
     data, labels = load_data_val(dataset, dspth=root)
     ds = Cifar(

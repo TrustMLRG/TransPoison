@@ -190,7 +190,7 @@ def evaluate(model, ema_model, dataloader, criterion):
 
 def main():
     parser = argparse.ArgumentParser(description='FixMatch Training')
-    parser.add_argument('--root', default='../data', type=str, help='dataset directory')
+    parser.add_argument('--root', default='./data', type=str, help='dataset directory')
     parser.add_argument('--arch', default='resnet18', type=str)   
     parser.add_argument('--dataset', type=str, default='CIFAR10',
                         help='number of classes in dataset')
